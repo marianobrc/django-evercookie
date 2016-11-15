@@ -11,5 +11,5 @@ urlpatterns = [
     url(r'^epng', 'evercookie_png', name='epng'),
     url(r'^ecetag', 'evercookie_etag', name='ecetag'),
     url(r'^ecookie', 'evercookie_core', name='ecookie'),
-    url(r'^ecauth', 'evercookie_auth', name='ecauth'), )
+    url(r'^ecauth', 'evercookie_auth', name='ecauth'),
 ]
