@@ -2,7 +2,7 @@
 
 from django.conf.urls import \
     url
-from views import (
+from .views import (
     evercookie_cache,
     evercookie_png,
     evercookie_etag,
