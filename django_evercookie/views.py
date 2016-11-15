@@ -1,7 +1,7 @@
  #-*- coding: utf-8 -*-
 
 from PIL import Image
-from StringIO import StringIO
+from io import StringIO
 from copy import deepcopy
 from django_dont_vary_on.decorators import dont_vary_on
 
