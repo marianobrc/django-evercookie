@@ -1,5 +1,4 @@
  #-*- coding: utf-8 -*-
-
 from PIL import Image
 from io import StringIO
 from copy import deepcopy

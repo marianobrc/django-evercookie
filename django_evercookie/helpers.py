@@ -14,5 +14,3 @@ def cookie_exists(cookie_name):
             return f(request, *args, **kwargs)
         return wrapper
     return render
-
-
