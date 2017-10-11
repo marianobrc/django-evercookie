@@ -1,8 +1,9 @@
 from setuptools import setup, find_packages
 
-requirements = [
-    l.strip() for l in open('requirements.txt').readlines()
+dependency_links = [
+    'http://github.com/rain0r/django-dont-vary-on/tarball/master#egg=django_dont_vary_on-1.0',
 ]
+requirements = ['Django','Pillow >= 2.0.0']
 
 setup(
     name='django_evercookie',
