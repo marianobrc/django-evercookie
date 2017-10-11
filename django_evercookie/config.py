@@ -16,24 +16,59 @@ class Meta(type):
 
 
 class Settings(object):
-    """Django Evercookie Settings Interface"""
+    """Django Evercookie Settings Interface."""
+
     __metaclass__ = Meta
 
-    def __init__(self, etag_cookie_name='etg',
-                 etag_path='evercookie-ecetag',
-                 png_cookie_name='png',
-                 png_path='evercookie-epng',
-                 cache_cookie_name='cachec',
-                 cache_path='evercookie-ecache',
-                 history='false',
-                 java='false',
-                 silverlight='false',
-                 domain='.' + current_site.domain,
-                 tests=10,
-                 base_url='',
-                 auth_path='false',
-                 static_url=settings.STATIC_URL + 'django_evercookie/',
-                 cookie_value=''):
+    def __init__(
+        self,
+        etag_cookie_name=settings.EVERCOOKIE_SETTINGS.get(
+            'ETAG_COOKIE_NAME'
+        ) or 'etg',
+        etag_path=settings.EVERCOOKIE_SETTINGS.get(
+            'EVERCOOKIE_ETAG_PATH'
+        ) or 'ecetag',
+        png_cookie_name=settings.EVERCOOKIE_SETTINGS.get(
+            'EVERCOOKIE_PNG_COOKIE_NAME'
+        ) or 'png',
+        png_path=settings.EVERCOOKIE_SETTINGS.get(
+            'EVERCOOKIE_PNG_PATH'
+        ) or 'epng',
+        cache_cookie_name=settings.EVERCOOKIE_SETTINGS.get(
+            'EVERCOOKIE_CACHE_COOKIE_NAME'
+        ) or 'cachec',
+        cache_path=settings.EVERCOOKIE_SETTINGS.get(
+            'EVERCOOKIE_CACHE_PATH'
+        ) or 'ecache',
+        history=settings.EVERCOOKIE_SETTINGS.get(
+            'EVERCOOKIE_HISTORY'
+        ) or 'false',
+        java=settings.EVERCOOKIE_SETTINGS.get(
+            'EVERCOOKIE_JAVA'
+        ) or 'false',
+        silverlight=settings.EVERCOOKIE_SETTINGS.get(
+            'EVERCOOKIE_SILVERLIGHT'
+        ) or 'false',
+        domain=settings.EVERCOOKIE_SETTINGS.get(
+            'EVERCOOKIE_DOMAIN'
+        ) or '.'+current_site.domain,
+        tests=settings.EVERCOOKIE_SETTINGS.get(
+            'EVERCOOKIE_TESTS'
+        ) or 10,
+        base_url=settings.EVERCOOKIE_SETTINGS.get(
+            'EVERCOOKIE_BASE_URL'
+        ) or '',
+        auth_path=settings.EVERCOOKIE_SETTINGS.get(
+            'EVERCOOKIE_AUTH_PATH'
+        ) or 'false',
+        static_url=settings.EVERCOOKIE_SETTINGS.get(
+            'EVERCOOKIE_STATIC_URL'
+        ) or (settings.STATIC_URL + 'django_evercookie/'),
+        cookie_value=settings.EVERCOOKIE_SETTINGS.get(
+            'EVERCOOKIE_COOKIE_VALUE'
+        ) or ''
+    ):
+
         self.etag_cookie_name = etag_cookie_name
         self.etag_path = etag_path
         self.png_cookie_name = png_cookie_name
