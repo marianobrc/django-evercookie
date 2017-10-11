@@ -12,8 +12,6 @@ from django_dont_vary_on.decorators import dont_vary_on
 from django_evercookie.config import settings
 from django_evercookie.helpers import cookie_exists
 
-settings = Settings()
-
 
 @dont_vary_on('Cookie', 'Host')
 @cookie_exists(settings.cache_cookie_name)
