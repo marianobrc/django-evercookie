@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from StringIO import StringIO
+import io
 from copy import deepcopy
 
 from PIL import Image
@@ -9,9 +10,10 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django_dont_vary_on.decorators import dont_vary_on
-
 from django_evercookie.config import settings
 from django_evercookie.helpers import cookie_exists
+
+settings = Settings()
 
 
 @dont_vary_on('Cookie', 'Host')
@@ -38,10 +40,8 @@ def evercookie_etag(request):
             response['Content-length'] = len(request.META['HTTP_IF_NONE_MATCH'])
 
     else:
-        response = HttpResponse(
-            content=request.COOKIES[settings.etag_cookie_name],
-            content_type='text/html; charset=UTF-8'
-        )
+        response = HttpResponse(content=request.COOKIES[settings.etag_cookie_name],
+                                content_type='text/html; charset=UTF-8')
         response['ETag'] = request.COOKIES[settings.etag_cookie_name]
         response['Content-length'] = len(request.COOKIES[settings.etag_cookie_name])
 
@@ -66,7 +66,8 @@ def evercookie_png(request):
     x_axis = 0
     y_axis = 0
     index = 0
-    buffer = StringIO()
+
+    buffer = io.StringIO()
 
     while index < len(new_cookie_value):
         base_img.putpixel((x_axis, y_axis), (ord(new_cookie_value[index]),
@@ -98,12 +99,13 @@ def evercookie_core(request):
                                'silverlight': settings.silverlight,
                                'base_url': settings.base_url,
                                'png_cookie_name': settings.png_cookie_name,
-                               'png_path': reverse(settings.png_path),
+                               'png_path': reverse("ecookie:{}".format(settings.png_path)),
                                'etag_cookie_name': settings.etag_cookie_name,
-                               'etag_path': reverse(settings.etag_path),
+                               'etag_path': reverse("ecookie:{}".format(settings.etag_path)),
                                'cache_cookie_name': settings.cache_cookie_name,
-                               'cache_path': reverse(settings.cache_path),
+                               'cache_path': reverse("ecookie:{}".format(settings.cache_path)),
                                'auth_path': settings.auth_path,
                                'domain': settings.domain,
                                'static_url': settings.static_url},
                               content_type="text/javascript")
+
