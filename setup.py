@@ -1,11 +1,8 @@
 from setuptools import setup, find_packages
 
-dependency_links = [
-    'http://github.com/rain0r/django-dont-vary-on/tarball/master#egg=django_dont_vary_on-1.0',
-
+requirements = [
+    l.strip() for l in open('requirements.txt').readlines()
 ]
-requirements = ['Django',
-                'Pillow >= 2.0.0']
 
 setup(
     name='django_evercookie',
@@ -18,5 +15,5 @@ setup(
     description='Evercookie for Django',
     license='MIT License',
     keywords='django evercookie',
-    url='https://github.com/gdmka/django_evercookie',
+    url='https://github.com/marianobrc/django-evercookie',
 )

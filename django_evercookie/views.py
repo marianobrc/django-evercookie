@@ -1,8 +1,7 @@
-# coding=utf-8
-from __future__ import unicode_literals
+#-*- coding: utf-8 -*-
+from PIL import Image
+from io import StringIO
 
-from StringIO import StringIO
-import io
 from copy import deepcopy
 
 from PIL import Image
